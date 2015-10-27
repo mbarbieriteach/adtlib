@@ -18,3 +18,12 @@ void ordina(nodo** seq, int verso);
 */
 
 void concatena(nodo** seqA, nodo** seqB);
+
+void concatena(nodo** seqA, nodo** seqB)
+{
+  while(*seqA->next != NULL)
+  {
+    *seqA=*seqA->next;
+  }
+  *seqA->next=seqB;
+}
