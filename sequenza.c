@@ -22,8 +22,7 @@ void concatena(nodo** seqA, nodo** seqB);
 void concatena(nodo** seqA, nodo** seqB)
 {
   while(*seqA->next != NULL)
-  {
-    *seqA=*seqA->next;
-  }
-  *seqA->next=seqB;
+    *seqA = *seqA->next;
+    
+  *seqA->next = seqB;
 }
