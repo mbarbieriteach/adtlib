@@ -1,40 +1,43 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-struct s_nodo {
-  int val;
-  s_nodo* next;
+#define MAX_SIZE 1000
+
+typedef struct {
+	int array[MAX_SIZE];
+	int c = 0;
+} Sequence;
+
+void inserisci_coda(Sequence seq, int x) {
+	if(seq.c == MAX_SIZE)
+		printf("Sequenza piena");
+	else
+		seq.array[seq.c++] = x;
 }
 
-typedef struct s_nodo nodo;
+void inserisci_testa(Sequence seq, int x) {
+	if(seq.c == MAX_SIZE)
+		printf("Sequenza piena");
+	else {
+		//Shift a destra di 1
+		for(int i = seq.c; i > 0; i++)
+			seq.array[i] = seq.array[i-1];
 
-/* nodo** seq: testa della lista
-   int    verso: crescente (0) o decrescente (1)
-*/
-void ordina(nodo** seq, int verso);
-//inizio Marini Basso
-void bubbleSort(nodo** sequence,int len){
-    for(int i =0 ; i< len -1; i++){
-        nodo *tmp=*sequence;
-        nodo* prev= tmp;
-        for(int j=0;j<len-1;j++){
-            prev=tmp;
-            tmp=tmp->next;
-            if(prev->info < tmp->info){
-                prev=tmp->next;
-                tmp=prev;
-            }
-        }
-    }
+		seq.array[0] = x;
+		++seq.c;
+	}
 }
 
-int lengthSequence(nodo** sequence){
-    int nNode=0;
-    nodo* tmp=*sequence;
-    while(tmp!=NULL){
-        nNode++;
-        tmp=tmp->next;
-    }
-    return nNode;
+void inserisci_dopo(Sequence seq, int x, int pos) {
+	if(pos > seq.c)
+		inserisci_coda(seq, x);
+	else if(seq.c == MAX_SIZE)
+		printf("Sequenza piena");
+	else {
+		for(int i = seq.c; i > pos+1; i++)
+			seq.array[i] = seq.array[i-1];
+
+		seq.array[pos+1] = x;
+		++seq.c;
+	}
 }
-//fine Marini Basso
