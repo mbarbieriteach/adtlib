@@ -3,17 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define max_stack 1000
+#define MAX_STACK 1000
 
-struct stack{
-  int array[max_stack];
+typedef struct {
+  int array[MAX_STACK];
   int indice = 0;         //indice di inserimento
-}
+} Stack;
 
-void push(stack pila, int a)
+void push(Stack pila, int a)
 {
-  if(pila.indice == max_stack)
-    printf("Stack overflow");
+  if(pila.indice == MAX_STACK)
+    printf("Stack Overflow");
   else
   {
     pila.array[pila.indice] = a;
@@ -21,10 +21,10 @@ void push(stack pila, int a)
   }
 }
 
-int pop(stack pila)
+int pop(Stack pila)
 {
-  if(pila.indice == max_stack)
-    printf("Stack overflow");
+  if(pila.indice == MAX_STACK)
+    printf("Stack Overflow");
   else
   {
     pila.indice--;
