@@ -23,8 +23,8 @@ void push(Stack pila, int a)
 
 int pop(Stack pila)
 {
-  if(pila.indice == MAX_STACK)
-    printf("Stack Overflow");
+  if(pila.indice == 0)
+    printf("Lo stack è vuoto");
   else
   {
     pila.indice--;
