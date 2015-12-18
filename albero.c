@@ -39,13 +39,12 @@ void enqueue(nodoCoda** testa , Nodo* dato){
     if(*testa == NULL)
         *testa = tmp;
     //altrimenti scorro e lo inserisco in coda
-    /*
     else{
         nodoCoda* sc = *testa;
         while(sc->next != NULL)
             sc = sc->next;
         sc->next = tmp;
-    }*/
+    }
 }
 
 Nodo* dequeue(nodoCoda** testa){
@@ -91,11 +90,13 @@ int main(void) {
 		albero_inserisci(&root, nuovo);
 	}
 
-
-	printf("\n");
-
-	nodoCoda* codaVisita = NULL;
+	printf("Visita in ampiezza: ")
 	albero_visita_breadth(root, codaVisita);
+	
+	printf("\n");
+	
+	printf("Vista in profondita' (in-order): ")
+	albero_visita_depth(root);
 
 	return 0;
 }
@@ -177,14 +178,13 @@ void albero_visita_depth(Nodo* tree) {
 }
 
 void albero_visita_breadth(Nodo* tree, nodoCoda* coda) {
-	printf("Nodo: %d\n", tree->valore);
+	printf("%d\t", tree->valore);
 	tree->visita = 'S';
 
 	enqueue(&coda, tree->left);
 	enqueue(&coda, tree->right);
 
 	Nodo* next = dequeue(&coda);
-	printf("Dopo dequeue: %d\n",coda);
 
 	albero_visita_breadth(next, coda);
 }
