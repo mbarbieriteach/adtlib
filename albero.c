@@ -1,9 +1,9 @@
 /*
  ============================================================================
  Name        : BinTree.c
- Author      : Jakub Kerber,Benni Benassi
+ Author      : James Game,Benni Benassi
  Version     :
- License     : MIT License
+ Copyright   :
  Description : Hello World in C, Ansi-style
  ============================================================================
  */
@@ -90,12 +90,12 @@ int main(void) {
 		albero_inserisci(&root, nuovo);
 	}
 
-	printf("Visita in ampiezza: ")
+
+	printf("\nVisita in ampiezza: ");
+	nodoCoda* codaVisita = NULL;
 	albero_visita_breadth(root, codaVisita);
-	
-	printf("\n");
-	
-	printf("Vista in profondita' (in-order): ")
+
+	printf("\nVisita in profondita' (in-order): ");
 	albero_visita_depth(root);
 
 	return 0;
@@ -172,19 +172,20 @@ void albero_visita_depth(Nodo* tree) {
 	albero_visita_depth(tree->left);
 
 	tree->visita = 'S';
-	printf("%d\t", tree->valore);
+	printf("%d ", tree->valore);
 
 	albero_visita_depth(tree->right);
 }
 
 void albero_visita_breadth(Nodo* tree, nodoCoda* coda) {
-	printf("%d\t", tree->valore);
+	printf("%d ", tree->valore);
 	tree->visita = 'S';
 
-	enqueue(&coda, tree->left);
-	enqueue(&coda, tree->right);
+	if(tree->left != NULL) enqueue(&coda, tree->left);
+	if(tree->right != NULL) enqueue(&coda, tree->right);
 
+	//Continua ad andare avanti finche' c'e' un elemento nella coda
 	Nodo* next = dequeue(&coda);
-
-	albero_visita_breadth(next, coda);
+	if(next != NULL)
+		albero_visita_breadth(next, coda);
 }
