@@ -1,9 +1,9 @@
 /*
  ============================================================================
  Name        : BinTree.c
- Author      : James Game,Benni Benassi
+ Author      : Jakub Kerber,Benni Benassi
  Version     :
- Copyright   : 
+ License     : MIT License
  Description : Hello World in C, Ansi-style
  ============================================================================
  */
